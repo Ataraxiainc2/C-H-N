@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Calidad del Software</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>CALCULADORA DE CALIDAD DE SOFTWARE</h1>
+
+    <form action="/calculate" method="post">
+        <div class="weights">
+            <div class="column">
+                <!-- Etiqueta y control deslizante para el peso de la Funcionalidad -->
+                <label for="wF" class="weights-label">Peso para Funcionalidad:</label>
+                <input type="range" step="0.05" min="0.1" max="1" value="0.3" name="wF" id="wF" required>
+                <output id="wF-output">0.3</output>
+
+                <!-- Etiqueta y control deslizante para el peso de la Fiabilidad -->
+                <label for="wR" class="weights-label">Peso para Fiabilidad:</label>
+                <input type="range" step="0.05" min="0.1" max="1" value="0.2" name="wR" id="wR" required>
+                <output id="wR-output">0.2</output>
+
+                <!-- Etiqueta y control deslizante para el peso de la Usabilidad -->
+                <label for="wU" class="weights-label">Peso para Usabilidad:</label>
+                <input type="range" step="0.05" min="0.1" max="1" value="0.25" name="wU" id="wU" required>
+                <output id="wU-output">0.25</output>
+
+                <!-- Etiqueta y control deslizante para el peso de la Mantenibilidad -->
+                <label for="wM" class="weights-label">Peso para Mantenibilidad:</label>
+                <input type="range" step="0.05" min="0.1" max="1" value="0.25" name="wM" id="wM" required>
+                <output id="wM-output">0.25</output>
+            </div>
+            <div class="column">
+                <!-- Etiqueta y control deslizante para la Funcionalidad -->
+                <label for="F" class="weights-label">Funcionalidad:</label>
+                <input type="range" step="0.1" min="1" max="10" value="8.5" name="F" id="F" required>
+                <output id="F-output">8.5</output>
+
+                <!-- Etiqueta y control deslizante para la Fiabilidad -->
+                <label for="R" class="weights-label">Fiabilidad:</label>
+                <input type="range" step="0.1" min="1" max="10" value="7.2" name="R" id="R" required>
+                <output id="R-output">7.2</output>
+
+                <!-- Etiqueta y control deslizante para la Usabilidad -->
+                <label for="U" class="weights-label">Usabilidad:</label>
+                <input type="range" step="0.1" min="1" max="10" value="6.8" name="U" id="U" required>
+                <output id="U-output">6.8</output>
+
+                <!-- Etiqueta y control deslizante para la Mantenibilidad -->
+                <label for="M" class="weights-label">Mantenibilidad:</label>
+                <input type="range" step="0.1" min="1" max="10" value="9.0" name="M" id="M" required>
+                <output id="M-output">9.0</output>
+            </div>
+        </div>
+    </form>
+
+    <div class="result">
+        <h2>Resultado:</h2>
+        <output id="result-output">0.00</output>
+    </div>
+
+    <div class="formula" id="formulaElement">
+        <!-- Fórmula de la calidad del software -->
+        <p style="color: #00FF00FF; font-weight: bold; font-size: 80px;">
+            Q = ∑(E<sub>i</sub> ⋅ w<sub>i</sub>)
+        </p>
+        <p>
+            <ul style="text-align: left; font-size: 14px;">
+                <p>
+                    Donde:
+                </p>
+                <li><strong>w<sub>F</sub>, w<sub>R</sub>, w<sub>U</sub>, w<sub>M</sub></strong>: Pesos asignados a cada uno de los factores, que suman 1.</li>
+                <li><strong>E<sub>i</sub></strong>: Atributos tangibles y emocionales del software.</li>
+                <li><strong>F</strong>: Funcionalidad</li>
+                <li><strong>R</strong>: Fiabilidad</li>
+                <li><strong>U</strong>: Usabilidad</li>
+                <li><strong>M</strong>: Mantenibilidad</li>
+                <li><strong>w<sub>i</sub></strong>: Pesos correspondientes a cada atributo.</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="disclaimer">
+        <p>* La suma de los pesos SIEMPRE debe ser igual a 1</p>
+    </div>
+
+    <canvas id="backgroundCanvas" style="width: 100%; height: 100%;"></canvas>
+
+    <!-- Archivo JavaScript para interactuar con la calculadora -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
